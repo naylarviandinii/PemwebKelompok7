@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tentang Kami – Tambah Jaya Market</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    :root {
+      --forest: #1e3a2f;
+      --moss: #2e5c42;
+      --sage: #4a8c64;
+      --leaf: #72b88a;
+      --mint: #b8d9c5;
+      --cream: #f7f4ee;
+      --gold: #c9a84c;
+      --gold-light: #e8c96a;
+      --white: #ffffff;
+      --dark: #111a15;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--forest);
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 6%;
+      height: 72px;
+      background: rgba(30, 58, 47, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(114, 184, 138, 0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--cream);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(247,244,238,0.75);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--cream); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--gold); }
+    .nav-links a.active::after { width: 100%; }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--forest) !important;
+      padding: 8px 22px;
+      border-radius: 50px;
+      font-weight: 600 !important;
+      transition: background 0.3s !important;
+    }
+
+    .nav-cta:hover { background: var(--gold-light) !important; }
+    .nav-cta::after { display: none !important; }
+
+    /* ===== PAGE HERO ===== */
+    .page-hero {
+      padding-top: 72px;
+      background: linear-gradient(135deg, var(--forest) 0%, var(--moss) 50%, #3a7055 100%);
+      padding-bottom: 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: 50%;
+      transform: translateX(-50%);
+      width: 120%; height: 120px;
+      background: var(--cream);
+      border-radius: 50% 50% 0 0;
+    }
+
+    .page-hero-inner {
+      padding: 80px 6% 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      font-size: 0.8rem;
+      color: rgba(247,244,238,0.5);
+      letter-spacing: 1px;
+    }
+
+    .breadcrumb a {
+      color: rgba(247,244,238,0.5);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .breadcrumb a:hover { color: var(--gold); }
+
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      color: var(--cream);
+      margin-bottom: 16px;
+    }
+
+    .page-hero p {
+      color: rgba(247,244,238,0.65);
+      font-size: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ===== ABOUT SECTION ===== */
+    .about-section {
+      padding: 100px 6% 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-img-main {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--forest), var(--moss));
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .about-img-main::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 70%, rgba(201,168,76,0.15), transparent 60%);
+    }
+
+    .about-badge-float {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      background: var(--gold);
+      color: var(--forest);
+      padding: 20px 24px;
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(201,168,76,0.35);
+      text-align: center;
+    }
+
+    .about-badge-float .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .about-badge-float .lbl {
+      font-size: 0.75rem;
+      font-weight: 600;
+      opacity: 0.8;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+      font-weight: 900;
+      color: var(--forest);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+    }
+
+    .about-values {
+      display: flex;
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    .value-item {
+      text-align: center;
+      padding: 20px 16px;
+      background: white;
+      border-radius: 16px;
+      flex: 1;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+
+    .value-item:hover { transform: translateY(-4px); }
+
+    .value-icon { font-size: 1.8rem; margin-bottom: 8px; }
+    .value-name { font-size: 0.8rem; font-weight: 600; color: var(--forest); }
+
+    /* ===== TEAM SECTION ===== */
+    .team-section {
+      padding: 80px 6% 100px;
+      background: #f0f4ee;
+    }
+
+    .team-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .team-header p {
+      color: #666;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .team-card {
+      background: white;
+      border-radius: 24px;
+      padding: 44px 28px 36px;
+      text-align: center;
+      position: relative;
+      transition: all 0.35s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+
+    .team-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--sage), var(--gold));
+      transform: scaleX(0);
+      transition: transform 0.35s;
+      transform-origin: left;
+    }
+
+    .team-card:hover::before { transform: scaleX(1); }
+    .team-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(30,58,47,0.12); }
+
+    .team-avatar {
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      border: 3px solid var(--leaf);
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, var(--mint), var(--leaf));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+    }
+
+    .team-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .team-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--forest);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .npm-badge {
+      display: inline-block;
+      background: #f0f4ee;
+      color: var(--sage);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+
+    .team-role {
+      font-size: 0.82rem;
+      color: #888;
+      margin-bottom: 20px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .social-links a {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: #f0f4ee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--forest);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+
+    .social-links a:hover {
+      background: var(--forest);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .btn-profile {
+      display: block;
+      background: var(--forest);
+      color: white;
+      text-decoration: none;
+      padding: 11px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.3s;
+    }
+
+    .btn-profile:hover {
+      background: var(--sage);
+      box-shadow: 0 6px 18px rgba(74,140,100,0.3);
+    }
+
+    /* ===== TIMELINE / HISTORY ===== */
+    .history-section {
+      padding: 100px 6%;
+      background: var(--cream);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .history-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 40px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 12px; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--sage), var(--leaf), var(--mint));
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 44px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -34px; top: 6px;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--sage);
+      border: 3px solid var(--cream);
+      box-shadow: 0 0 0 2px var(--sage);
+    }
+
+    .timeline-year {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .timeline-item h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--forest);
+      margin-bottom: 6px;
+    }
+
+    .timeline-item p {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 32px;
+      font-size: 0.82rem;
+    }
+
+    footer span { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="nav-logo">Tambah Jaya <span>Market</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="profil.html" class="active">Tentang Kami</a></li>
+      <li><a href="kontak.html">Kontak</a></li>
+      <li><a href="kontak.html" class="nav-cta">Hubungi Kami</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <span>Tentang Kami</span>
+      </div>
+      <h1>Mengenal Tambah Jaya Market</h1>
+      <p>Lebih dari sekadar swalayan — kami adalah bagian dari keseharian Anda.</p>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section style="padding: 100px 6% 60px; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+    <div class="about-visual">
+      <div class="about-img-main">🏪</div>
+      <div class="about-badge-float">
+        <div class="num">2009</div>
+        <div class="lbl">Berdiri Sejak</div>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-label">Kisah Kami</div>
+      <h2 class="section-title">Melayani dengan Hati Selama 15+ Tahun</h2>
+      <p>Tambah Jaya Market bermula dari sebuah toko kelontong kecil yang didirikan dengan tekad sederhana: menyediakan bahan kebutuhan sehari-hari yang berkualitas dengan harga yang jujur untuk masyarakat sekitar.</p>
+      <p>Kini, kami telah berkembang menjadi swalayan modern yang melayani ribuan pelanggan setia setiap harinya, tanpa melupakan nilai-nilai yang menjadi fondasi kami sejak awal.</p>
+      <div class="about-values">
+        <div class="value-item">
+          <div class="value-icon">🤝</div>
+          <div class="value-name">Kepercayaan</div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">💎</div>
+          <div class="value-name">Kualitas</div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">❤️</div>
+          <div class="value-name">Pelayanan</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team-section">
+    <div class="team-header">
+      <div class="section-label">Tim Kami</div>
+      <h2 class="section-title" style="font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--forest); margin-bottom: 14px;">Orang-Orang di Balik Layar</h2>
+      <p>Proyek website ini dikerjakan oleh tim mahasiswa berdedikasi dari UPN "Veteran" Jawa Timur.</p>
+    </div>
+    <div class="team-grid">
+
+      <div class="team-card">
+        <div class="team-avatar">👩</div>
+        <h3>Cutrin Joy M.T Sihombing</h3>
+        <div class="npm-badge">NPM 24082010170</div>
+        <div class="team-role">Frontend Developer</div>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+        <a href="biodata-cutrin.html" class="btn-profile">Pelajari Selengkapnya</a>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">👩‍💻</div>
+        <h3>Nayla Arviandini</h3>
+        <div class="npm-badge">NPM 24082010146</div>
+        <div class="team-role">UI/UX Designer</div>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+        <a href="biodata-nayla.html" class="btn-profile">Pelajari Selengkapnya</a>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">👩‍🎨</div>
+        <h3>Kharenina Rizqy P.N</h3>
+        <div class="npm-badge">NPM 24082010144</div>
+        <div class="team-role">Web Designer</div>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+        <a href="biodata-kharenina.html" class="btn-profile">Pelajari Selengkapnya</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HISTORY TIMELINE -->
+  <section style="padding: 100px 6%; background: var(--cream);">
+    <div style="max-width: 700px; margin: 0 auto;">
+      <div style="text-align: center; margin-bottom: 60px;">
+        <div class="section-label">Perjalanan Kami</div>
+        <h2 class="section-title" style="font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--forest);">Sejarah Singkat Toko</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2009</div>
+          <h3>Berdiri sebagai Toko Kelontong</h3>
+          <p>Dimulai dari sebuah kios kecil di Surabaya dengan modal dan semangat yang besar.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2014</div>
+          <h3>Ekspansi ke Format Minimarket</h3>
+          <p>Berkembang menjadi minimarket dengan lebih dari 1.000 jenis produk pilihan.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2019</div>
+          <h3>Renovasi & Digitalisasi</h3>
+          <p>Merenovasi toko dan mulai mengadopsi sistem kasir digital serta pembayaran QRIS.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2024</div>
+          <h3>Hadir Secara Online</h3>
+          <p>Meluncurkan website resmi untuk memperluas jangkauan dan kemudahan pelanggan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2026 <span>Tambah Jaya Market</span> — Proyek Website UPN "Veteran" Jawa Timur
+  </footer>
+
+</body>
+</html>

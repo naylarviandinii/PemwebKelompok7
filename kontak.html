@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontak – Tambah Jaya Market</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --forest: #1e3a2f;
+      --moss: #2e5c42;
+      --sage: #4a8c64;
+      --leaf: #72b88a;
+      --mint: #b8d9c5;
+      --cream: #f7f4ee;
+      --gold: #c9a84c;
+      --gold-light: #e8c96a;
+      --white: #ffffff;
+      --dark: #111a15;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--forest);
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 6%;
+      height: 72px;
+      background: rgba(30, 58, 47, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(114, 184, 138, 0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--cream);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(247,244,238,0.75);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--cream); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--gold); }
+    .nav-links a.active::after { width: 100%; }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--forest) !important;
+      padding: 8px 22px;
+      border-radius: 50px;
+      font-weight: 600 !important;
+      transition: background 0.3s !important;
+    }
+
+    .nav-cta:hover { background: var(--gold-light) !important; }
+    .nav-cta::after { display: none !important; }
+
+    /* ===== PAGE HERO ===== */
+    .page-hero {
+      padding-top: 72px;
+      background: linear-gradient(135deg, var(--forest) 0%, var(--moss) 100%);
+      padding-bottom: 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: 50%;
+      transform: translateX(-50%);
+      width: 120%; height: 120px;
+      background: var(--cream);
+      border-radius: 50% 50% 0 0;
+    }
+
+    .page-hero-inner {
+      padding: 80px 6% 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      font-size: 0.8rem;
+      color: rgba(247,244,238,0.5);
+      letter-spacing: 1px;
+    }
+
+    .breadcrumb a {
+      color: rgba(247,244,238,0.5);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .breadcrumb a:hover { color: var(--gold); }
+
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      color: var(--cream);
+      margin-bottom: 16px;
+    }
+
+    .page-hero p {
+      color: rgba(247,244,238,0.65);
+      font-size: 1rem;
+      max-width: 440px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ===== CONTACT MAIN ===== */
+    .contact-main {
+      padding: 100px 6% 100px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    /* LEFT: Info Cards */
+    .contact-info-col {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .info-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--forest);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .info-sub {
+      color: #777;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .info-card {
+      background: white;
+      border-radius: 18px;
+      padding: 22px 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-left: 3px solid transparent;
+    }
+
+    .info-card:hover {
+      transform: translateX(4px);
+      box-shadow: 0 8px 30px rgba(30,58,47,0.1);
+      border-left-color: var(--sage);
+    }
+
+    .info-icon {
+      width: 44px; height: 44px;
+      min-width: 44px;
+      background: linear-gradient(135deg, var(--forest), var(--moss));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .info-card h4 {
+      font-size: 0.78rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .info-card p {
+      font-size: 0.95rem;
+      color: var(--forest);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .info-card span {
+      font-size: 0.8rem;
+      color: #999;
+      font-weight: 400;
+    }
+
+    /* Social row */
+    .social-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .social-btn {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.1rem;
+      color: var(--forest);
+      transition: all 0.3s;
+    }
+
+    .social-btn:hover {
+      background: var(--forest);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(30,58,47,0.2);
+    }
+
+    /* RIGHT: Form */
+    .contact-form-col {
+      background: white;
+      border-radius: 28px;
+      padding: 48px 40px;
+      box-shadow: 0 8px 40px rgba(30,58,47,0.08);
+    }
+
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--forest);
+      margin-bottom: 6px;
+    }
+
+    .form-subtitle {
+      color: #888;
+      font-size: 0.88rem;
+      margin-bottom: 32px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--forest);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid #e8ede6;
+      border-radius: 12px;
+      background: #fafcf9;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--forest);
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      resize: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--sage);
+      box-shadow: 0 0 0 3px rgba(74,140,100,0.1);
+      background: white;
+    }
+
+    .form-group textarea { height: 130px; }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, var(--forest), var(--moss));
+      color: white;
+      border: none;
+      border-radius: 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .submit-btn::after {
+      content: '→';
+      margin-left: 8px;
+      transition: transform 0.3s;
+      display: inline-block;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(30,58,47,0.25);
+    }
+
+    .submit-btn:hover::after { transform: translateX(4px); }
+
+    /* Success message */
+    .success-msg {
+      display: none;
+      background: #e8f5e9;
+      border: 1px solid #a5d6a7;
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 0.88rem;
+      color: #2e7d32;
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    /* ===== MAP ===== */
+    .map-section {
+      padding: 0 6% 100px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .map-label {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .map-container {
+      background: linear-gradient(135deg, var(--forest), var(--moss));
+      border-radius: 24px;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(30,58,47,0.2);
+    }
+
+    .map-placeholder {
+      text-align: center;
+      color: rgba(255,255,255,0.8);
+      z-index: 1;
+    }
+
+    .map-placeholder .map-icon { font-size: 3rem; margin-bottom: 12px; }
+    .map-placeholder h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .map-placeholder p { font-size: 0.85rem; opacity: 0.7; }
+
+    .map-pin-anim {
+      position: absolute;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 0 rgba(201,168,76,0.5);
+      animation: pingMap 2s ease-in-out infinite;
+    }
+
+    @keyframes pingMap {
+      0% { box-shadow: 0 0 0 0 rgba(201,168,76,0.6); }
+      70% { box-shadow: 0 0 0 20px rgba(201,168,76,0); }
+      100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+    }
+
+    /* ===== FAQ ===== */
+    .faq-section {
+      padding: 80px 6%;
+      background: #f0f4ee;
+    }
+
+    .faq-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .faq-header {
+      text-align: center;
+      margin-bottom: 44px;
+    }
+
+    .faq-item {
+      background: white;
+      border-radius: 16px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+
+    .faq-question {
+      padding: 18px 24px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--forest);
+      transition: background 0.3s;
+      user-select: none;
+    }
+
+    .faq-question:hover { background: #fafcf9; }
+
+    .faq-question .arrow {
+      font-size: 0.9rem;
+      transition: transform 0.3s;
+      color: var(--sage);
+    }
+
+    .faq-item.open .faq-question { color: var(--sage); }
+    .faq-item.open .arrow { transform: rotate(180deg); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .faq-answer-inner {
+      padding: 0 24px 18px;
+      font-size: 0.88rem;
+      color: #666;
+      line-height: 1.75;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 32px;
+      font-size: 0.82rem;
+    }
+
+    footer span { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="nav-logo">Tambah Jaya <span>Market</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="profil.html">Tentang Kami</a></li>
+      <li><a href="kontak.html" class="active">Kontak</a></li>
+      <li><a href="kontak.html" class="nav-cta">Hubungi Kami</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <span>Kontak</span>
+      </div>
+      <h1>Hubungi Kami</h1>
+      <p>Ada pertanyaan atau saran? Kami dengan senang hati siap mendengar dan membantu Anda.</p>
+    </div>
+  </div>
+
+  <!-- CONTACT MAIN -->
+  <div class="contact-main">
+
+    <!-- INFO -->
+    <div class="contact-info-col">
+      <div>
+        <div class="section-label">Informasi Kontak</div>
+        <h2 class="info-heading">Kami Selalu<br>Siap Membantu</h2>
+        <p class="info-sub">Jangan ragu untuk menghubungi kami melalui berbagai saluran berikut.</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">📞</div>
+        <div>
+          <h4>Telepon / WhatsApp</h4>
+          <p>+62 812-3456-7890</p>
+          <span>Senin – Sabtu, 08.00 – 21.00</span>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">📧</div>
+        <div>
+          <h4>Email</h4>
+          <p>info@tambahjayamarket.com</p>
+          <span>Balasan dalam 1x24 jam</span>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">📍</div>
+        <div>
+          <h4>Alamat Toko</h4>
+          <p>Jl. Raya Darmo No. 88</p>
+          <span>Surabaya, Jawa Timur 60241</span>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">🕐</div>
+        <div>
+          <h4>Jam Operasional</h4>
+          <p>Setiap Hari: 07.00 – 22.00</p>
+          <span>Termasuk hari libur nasional</span>
+        </div>
+      </div>
+
+      <div>
+        <p style="font-size: 0.82rem; color: #aaa; margin-bottom: 10px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600;">Ikuti Kami</p>
+        <div class="social-row">
+          <a href="#" class="social-btn">📘</a>
+          <a href="#" class="social-btn">📸</a>
+          <a href="#" class="social-btn">🐦</a>
+          <a href="#" class="social-btn">▶️</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div class="contact-form-col">
+      <h3 class="form-title">Kirim Pesan</h3>
+      <p class="form-subtitle">Ceritakan apa yang bisa kami bantu untuk Anda hari ini.</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nama Depan</label>
+          <input type="text" placeholder="Budi" />
+        </div>
+        <div class="form-group">
+          <label>Nama Belakang</label>
+          <input type="text" placeholder="Santoso" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="budi@email.com" />
+      </div>
+
+      <div class="form-group">
+        <label>No. Telepon</label>
+        <input type="tel" placeholder="+62 8xx-xxxx-xxxx" />
+      </div>
+
+      <div class="form-group">
+        <label>Topik</label>
+        <select>
+          <option value="">-- Pilih Topik --</option>
+          <option>Pertanyaan Produk</option>
+          <option>Keluhan / Saran</option>
+          <option>Kerjasama / Supplier</option>
+          <option>Informasi Lainnya</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Pesan</label>
+        <textarea placeholder="Tuliskan pesan Anda di sini..."></textarea>
+      </div>
+
+      <button class="submit-btn" onclick="handleSubmit()">Kirim Pesan</button>
+      <div class="success-msg" id="successMsg">
+        ✅ Pesan Anda berhasil dikirim! Kami akan segera menghubungi Anda.
+      </div>
+    </div>
+  </div>
+
+  <!-- MAP -->
+  <div class="map-section">
+    <div class="map-label">
+      <div class="section-label">Lokasi Kami</div>
+      <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--forest);">Temukan Kami di Peta</h2>
+    </div>
+    <div class="map-container">
+      <div class="map-pin-anim"></div>
+      <div class="map-placeholder">
+        <div class="map-icon">🗺️</div>
+        <h3>Tambah Jaya Market</h3>
+        <p>Jl. Raya Darmo No. 88, Surabaya, Jawa Timur</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="faq-inner">
+      <div class="faq-header">
+        <div class="section-label">FAQ</div>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--forest); margin-bottom: 8px;">Pertanyaan Umum</h2>
+        <p style="color: #888; font-size: 0.9rem;">Temukan jawaban atas pertanyaan yang paling sering kami terima.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Apakah Tambah Jaya Market melayani pengiriman ke rumah?
+          <span class="arrow">▾</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Ya! Kami melayani pengiriman untuk area Surabaya dan sekitarnya. Hubungi kami melalui WhatsApp untuk informasi lebih lanjut mengenai jadwal dan biaya pengiriman.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Metode pembayaran apa saja yang diterima?
+          <span class="arrow">▾</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Kami menerima pembayaran tunai (cash), transfer bank (BCA, Mandiri, BRI), dan pembayaran digital via QRIS (GoPay, OVO, Dana, ShopeePay, dan lainnya).</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Bagaimana cara menjadi supplier/mitra produk?
+          <span class="arrow">▾</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Kami terbuka untuk kerjasama dengan supplier lokal. Silakan kirim email ke info@tambahjayamarket.com dengan subjek "Kerjasama Supplier" beserta profil perusahaan dan daftar produk Anda.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Apakah ada promo atau program loyalitas untuk pelanggan setia?
+          <span class="arrow">▾</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Tentu! Kami memiliki program Kartu Member Tambah Jaya yang memberikan diskon khusus dan poin reward setiap transaksi. Daftarkan diri Anda di kasir atau hubungi kami untuk info lebih lanjut.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2026 <span>Tambah Jaya Market</span> — Proyek Website UPN "Veteran" Jawa Timur
+  </footer>
+
+  <script>
+    function toggleFaq(el) {
+      const item = el.parentElement;
+      const answer = item.querySelector('.faq-answer');
+      const isOpen = item.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-answer').style.maxHeight = null;
+      });
+
+      // Open clicked if was closed
+      if (!isOpen) {
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    }
+
+    function handleSubmit() {
+      const msg = document.getElementById('successMsg');
+      msg.style.display = 'block';
+      setTimeout(() => msg.style.display = 'none', 5000);
+    }
+  </script>
+
+</body>
+</html>
