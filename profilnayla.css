@@ -1,0 +1,233 @@
+/* General Setup */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8fafc; /* Ultra Light Grey/Blue */
+    color: #334155; /* Slate Dark untuk teks */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+/* Background Soft Blobs (Pastel) */
+.background-blobs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.blob {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    filter: blur(100px);
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.blob-1 { 
+    top: -100px; 
+    left: -100px; 
+    background: #e0e7ff; /* Pastel Blue/Indigo */
+}
+
+.blob-2 { 
+    bottom: -100px; 
+    right: -100px; 
+    background: #fae8ff; /* Pastel Pink/Purple */
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Glassmorphism Card Style - Light Version */
+.glass-card {
+    background: rgba(255, 255, 255, 0.7); /* Putih Transparan */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(148, 163, 184, 0.1); /* Shadow lembut */
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 15px 35px rgba(148, 163, 184, 0.2);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #ffffff;
+    margin-bottom: 15px;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.hero h1 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #1e293b;
+    letter-spacing: -0.5px;
+}
+
+.headline {
+    color: #64748b;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-links a {
+    color: #94a3b8;
+    font-size: 1.4rem;
+    padding: 8px;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #6366f1; /* Aksen saat hover */
+    transform: scale(1.1);
+}
+
+/* Section Titles */
+h3 {
+    color: #1e293b;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+h3 i {
+    color: #6366f1;
+}
+
+/* Skills Section */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-tag {
+    background: #ffffff;
+    color: #475569;
+    padding: 8px 18px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+/* Timeline */
+.timeline {
+    margin-top: 10px;
+    border-left: 2px solid #f1f5f9;
+    padding-left: 25px;
+    position: relative;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -32px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    background: #6366f1;
+    border-radius: 50%;
+    border: 3px solid #f8fafc;
+}
+
+.timeline-content h4 {
+    font-size: 1.05rem;
+    color: #334155;
+}
+
+.timeline-content span {
+    font-size: 0.8rem;
+    color: #6366f1;
+    font-weight: 500;
+}
+
+.timeline-content p {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-top: 5px;
+}
+
+/* Contact Button */
+.contact {
+    text-align: center;
+}
+
+.btn-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    padding: 14px 35px;
+    background: #1e293b; /* Tombol gelap agar kontras */
+    color: white;
+    text-decoration: none;
+    border-radius: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-email:hover {
+    background: #6366f1;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .glass-card {
+        padding: 25px 20px;
+    }
+    
+    .hero h1 {
+        font-size: 1.75rem;
+    }
+}
